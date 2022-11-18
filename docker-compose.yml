@@ -1,0 +1,25 @@
+version: '3.9'
+
+services:
+  mqtt:
+    image: eclipse-mosquitto:2.0.15
+    ports:
+      - 1883:1883
+    volumes:
+      - ./cfg/mosquitto.conf:/mosquitto/config/mosquitto.conf
+
+  redis:
+    image: redis:7.0.5-alpine
+    ports:
+      - 6379:6379
+
+  nats:
+    image: nats:2.9.4-scratch
+    ports:
+      - 4222:4222
+      - 8222:8222
+
+  nats-ui:
+    image: sphqxe/nats-webui:latest
+    ports:
+      - 8282:80
